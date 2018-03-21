@@ -13,6 +13,8 @@ gem 'webpacker', '~> 3.0'
 gem 'jquery-rails', '~> 4.3.1'
 gem 'devise', github: 'plataformatec/devise'
 gem 'devise-bootstrapped', github: 'excid3/devise-bootstrapped', branch: 'bootstrap4'
+gem 'bootsnap', '>= 1.1.0', require: false
+gem 'mini_magick'
 
 
 group :development do
