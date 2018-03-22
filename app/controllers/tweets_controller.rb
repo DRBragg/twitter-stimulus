@@ -1,6 +1,6 @@
 class TweetsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_tweet, only: [:show, :edit, :update, :destroy]
+  before_action :set_tweet, only: [:show, :edit, :update, :remove_photo, :destroy]
 
   # GET /tweets
   def index
@@ -47,6 +47,15 @@ class TweetsController < ApplicationController
         format.html { render :edit }
         format.js
       end
+    end
+  end
+
+  # Remove photo
+  def remove_photo
+    @tweet.photo.purge
+    respond_to do |format|
+      format.html { redirect_to tweets_url, notice: 'Tweet photo was successfully removed.' }
+      format.js { render :update }
     end
   end
 
