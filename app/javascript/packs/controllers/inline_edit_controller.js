@@ -6,6 +6,8 @@ export default class extends Controller {
   toggle() {
     this.bodyTarget.classList.add('d-none')
     this.formTarget.classList.remove('d-none')
-    this.deleteTarget.classList.remove('d-none')
+    if (this.hasDeleteTarget) {
+      this.deleteTarget.classList.remove('d-none')
+    }
   }
 }

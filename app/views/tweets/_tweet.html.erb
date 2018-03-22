@@ -1,26 +1,26 @@
 <div id="<%= dom_id(tweet) %>" class="card card-body mb-3" data-controller="inline-edit">
   <div class="row">
     <div class="col-sm-6">
-      <div><%= tweet.user.name %></div>
+      <div><%= image_tag tweet.user.avatar.variant(resize: "30x30"), class: "rounded-circle" %> <%= tweet.user.name %></div>
     </div>
     <div class="col-sm-6 text-right">
-      <div class="text-muted"><small><%= tweet.created_at %></small></div>
+      <div class="text-muted"><small><%= tweet.created_at.strftime("%m/%d/%Y at %l:%M %p") %></small></div>
     </div>
   </div>
 
   <div data-target="inline-edit.body" data-action="click->inline-edit#toggle"><%= tweet.body %></div>
 
   <% if tweet.photo.attached? %>
-    <% if tweet.photo.variable? %>
+    <% if tweet.photo.image? %>
       <div class="row">
         <div class="col-sm-8 offset-sm-2 text-center">
-          <%= image_tag tweet.photo, class: "img-fluid" %>
+          <%= image_tag tweet.photo.variant(resize: "600x400"), class: "img-fluid" %>
         </div>
       </div>
     <% elsif tweet.photo.previewable? %>
       <div class="row">
         <div class="col-sm-8 offset-sm-2 text-center">
-          <%= image_tag tweet.photo.preview(resize: "600x600"), class: "img-fluid" %>
+          <%= image_tag tweet.photo.preview(resize: "400x400"), class: "img-fluid" %>
         </div>
       </div>
     <% end %>

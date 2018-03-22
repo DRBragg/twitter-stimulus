@@ -30,6 +30,9 @@
         <span data-target="tweet-form.charCount"></span>
       </div>
       <div class="col-sm-6 text-right">
+        <% if tweet.id %>
+          <%= link_to "Delete Tweet", {:controller => :tweets, :action => 'destroy', :id => tweet.id }, :method => :delete, class: 'btn btn-danger' %>
+        <% end %>
         <%= form.submit class: "btn btn-primary" %>
       </div>
     </div>
